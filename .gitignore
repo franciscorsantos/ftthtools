@@ -1,5 +1,6 @@
 # Ambiente Virtual
 # Impede que a pasta do ambiente virtual (com todas as bibliotecas) seja enviada.
+.idea
 .venv
 venv/
 env/
