@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-7">
+        <h2 class="mb-4 text-center">Código de Cores para Fibra Óptica</h2>
+        <p class="text-center text-muted">Padrão ABNT e EIA/TIA-598-A.</p>
+
+        <!-- Input field -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Encontrar Fibra</h5>
+
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" role="switch" id="padrao_switch" onchange="encontrarFibra()">
+                    <label class="form-check-label" for="padrao_switch">Usar padrão EIA/TIA-598-A (Padrão ABNT desligado)</label>
+                </div>
+
+                <div class="mb-3">
+                    <label for="numero_fibra" class="form-label">Digite o número da fibra (1-144):</label>
+                    <input type="number" class="form-control" id="numero_fibra" min="1" max="144" oninput="encontrarFibra()">
+                </div>
+            </div>
+        </div>
+
+        <!-- Result display -->
+        <div class="card shadow-sm text-center" id="resultado_card">
+             <div class="card-header">
+                Resultado da Identificação
+            </div>
+            <div class="card-body" id="resultado_cores">
+                <p class="text-muted">Aguardando o número da fibra...</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/cores.js') }}"></script>
+{% endblock %}

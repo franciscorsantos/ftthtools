@@ -1,0 +1,42 @@
+<!-- Herda o layout base do arquivo 'base.html'. Isso evita a repetição de código HTML comum (como <head>, navbar, footer). -->
+{% extends "base.html" %}
+
+<!-- Define o conteúdo para o bloco 'title' que está no 'base.html'. -->
+{% block title %}Calculadora de Barramento - FTTH{% endblock %}
+
+<!-- Define o conteúdo principal da página, que será inserido no bloco 'content' do 'base.html'. -->
+{% block content %}
+<div class="container py-5">
+    <h2 class="mb-4">Simulador de Rede Desbalanceada (Barramento)</h2>
+    
+    <!-- 'no-print' é uma classe personalizada para esconder este elemento ao imprimir a página. -->
+    <div class="card p-4 mb-4 no-print shadow-sm">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <label for="olt_signal" class="form-label">Sinal OLT (dBm):</label>
+                <!-- Input para o sinal inicial da OLT. 'onchange' chama a função para recalcular a rede sempre que o valor muda. -->
+                <input type="number" id="olt_signal" class="form-control" value="3.0" step="0.1" onchange="calcularRede()">
+            </div>
+            <div class="col-md-5">
+                <div class="btn-group w-100" role="group" aria-label="Adicionar CTO">
+                    <button id="add_desbal_btn" class="btn btn-primary" onclick="addCTO('desbalanceado')">+ CTO Desbalanceada</button>
+                    <button id="add_bal_btn" class="btn btn-success" onclick="addCTO('balanceado')">+ CTO Balanceada (Terminal)</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <!-- Botão que aciona a funcionalidade de impressão do navegador. -->
+                <button class="btn btn-secondary w-100" onclick="window.print()">Imprimir / Salvar PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Este container é o alvo onde o JavaScript ('script.js') irá renderizar dinamicamente os cards das CTOs. -->
+    <div id="rede_container"></div>
+</div>
+{% endblock %}
+
+<!-- Define o conteúdo para o bloco 'scripts' do 'base.html'. -->
+{% block scripts %}
+<!-- Inclui o arquivo JavaScript específico para esta página. 'url_for' gera a URL correta para o arquivo estático. -->
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}

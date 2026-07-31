@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Calculadoras FTTH{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="p-5 mb-4 bg-white rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Calculadoras de Potência Óptica FTTH</h1>
+            <p class="col-md-8 fs-4">Ferramentas para simular e validar projetos de redes ópticas, ajudando a estimar o sinal que chegará ao cliente final.</p>
+            <a class="btn btn-primary btn-lg" href="{{ url_for('desbalanceada') }}">Ir para Calculadora Desbalanceada</a>
+            <a class="btn btn-secondary btn-lg" href="{{ url_for('balanceada') }}">Ir para Calculadora Balanceada</a>
+        </div>
+    </div>
+
+    <div class="row align-items-md-stretch">
+        <div class="col-md-6 mb-4">
+            <div class="h-100 p-5 text-bg-dark rounded-3">
+                <h2>Rede Balanceada</h2>
+                <p>Nesta arquitetura, a potência óptica da OLT é dividida igualmente entre os usuários. O cálculo soma todas as perdas fixas ao longo do caminho.</p>
+                <p><strong>Fórmula:</strong></p>
+                <code>Sinal Cliente = Sinal OLT - Perda Splitter 1 - Perda Splitter 2 - Perda Cabo - Perdas Conectores/Emendas</code>
+                <p class="mt-3">É ideal para áreas com densidade uniforme de assinantes.</p>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="h-100 p-5 bg-white border rounded-3">
+                <h2>Rede Desbalanceada (Barramento)</h2>
+                <p>Utiliza splitters que dividem o sinal de forma desigual. Uma pequena parte do sinal é "derivada" para o cliente (drop), enquanto a maior parte continua (pass-through) para a próxima caixa.</p>
+                <p><strong>Cálculo por CTO:</strong></p>
+                <ul>
+                    <li><code>Sinal Cliente = Sinal Entrada - Perda Drop - Perda Splitter Interno</code></li>
+                    <li><code>Sinal Saída = Sinal Entrada - Perda Passagem</code></li>
+                </ul>
+                <p>O <strong>Sinal Saída</strong> de uma CTO se torna o <strong>Sinal Entrada</strong> da CTO seguinte. É uma arquitetura flexível, ótima para distribuição linear de clientes (ex: ao longo de uma rua).</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

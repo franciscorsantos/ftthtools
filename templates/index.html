@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="p-5 mb-4 rounded-3" style="background-color: var(--cinza-tech);">
+    <div class="container-fluid py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1 class="display-5 fw-bold">FTTH Tools</h1>
+                <p class="fs-4">Sua caixa de ferramentas digital para projetos de fibra óptica. Calcule perdas, autonomia de baterias e consulte padrões de cores de forma rápida e precisa.</p>
+            </div>
+            <div class="col-lg-4 text-center mt-4 mt-lg-0">
+                <img src="{{ url_for('static', filename='img/qr_code.png') }}" alt="QR Code para doação" class="img-fluid rounded mb-2" style="max-width: 150px;">
+                <p class="mb-0">Gostou da ferramenta? Considere fazer uma doação para manter o serviço no ar!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row align-items-md-stretch">
+    <div class="col-md-6 mb-4">
+        <div class="h-100 p-5 text-white rounded-3" style="background-color: var(--azul-profundo);">
+            <h2>Calculadoras de Potência</h2>
+            <p>Simule sua rede óptica, seja ela balanceada ou desbalanceada. Insira os parâmetros e obtenha o sinal estimado no cliente final.</p>
+            <a href="{{ url_for('desbalanceada') }}" class="btn btn-outline-light me-2" type="button">Rede Desbalanceada</a>
+            <a href="{{ url_for('balanceada') }}" class="btn btn-outline-light" type="button">Rede Balanceada</a>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="h-100 p-5 border rounded-3" style="background-color: var(--cinza-tech);">
+            <h2>Ferramentas Auxiliares</h2>
+            <p>Calcule a autonomia do seu banco de baterias e consulte rapidamente o código de cores de cabos de fibra óptica.</p>
+            <a href="{{ url_for('autonomia') }}" class="btn btn-outline-secondary me-2" type="button">Autonomia de Baterias</a>
+            <a href="{{ url_for('cores') }}" class="btn btn-outline-secondary" type="button">Código de Cores</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

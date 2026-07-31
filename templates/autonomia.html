@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <h2 class="mb-4 text-center">Calculadora de Autonomia de Baterias</h2>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Parâmetros do Sistema</h5>
+                <div class="mb-3">
+                    <label for="consumo_watts" class="form-label">Consumo total dos equipamentos (Watts)</label>
+                    <input type="number" class="form-control" id="consumo_watts" value="150" oninput="calcularAutonomia()">
+                </div>
+                <div class="mb-3">
+                    <label for="capacidade_bateria" class="form-label">Capacidade do banco de baterias (Ah)</label>
+                    <input type="number" class="form-control" id="capacidade_bateria" value="100" oninput="calcularAutonomia()">
+                </div>
+                <div class="mb-3">
+                    <label for="tensao_bateria" class="form-label">Tensão do banco de baterias (V)</label>
+                    <select class="form-select" id="tensao_bateria" onchange="calcularAutonomia()">
+                        <option value="12">12 V</option>
+                        <option value="24">24 V</option>
+                        <option value="48" selected>48 V</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="eficiencia_sistema" class="form-label">Eficiência do sistema (retificador/inversor) (%)</label>
+                    <input type="number" class="form-control" id="eficiencia_sistema" value="85" oninput="calcularAutonomia()">
+                </div>
+            </div>
+        </div>
+
+        <div class="card text-center" id="resultado_card">
+            <div class="card-header">
+                Resultado da Autonomia
+            </div>
+            <div class="card-body">
+                <h3 class="card-title" id="resultado_autonomia">-</h3>
+                <p class="card-text text-muted" id="detalhes_calculo">-</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/autonomia.js') }}"></script>
+{% endblock %}

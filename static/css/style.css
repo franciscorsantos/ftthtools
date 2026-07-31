@@ -1,0 +1,242 @@
+/* 
+  Define as variáveis de CSS (custom properties) para o tema claro (padrão).
+  Isso permite centralizar a paleta de cores e facilitar a criação de um tema escuro.
+*/
+:root {
+    --azul-eletrico: #007bff;
+    --verde-neon: #198754;
+    --azul-profundo: #0d6efd;
+    --fundo-body: #f8f9fa; /* Cinza muito claro */
+    --fundo-card: #ffffff;
+    --cor-texto: #212529;
+    --cor-texto-suave: #6c757d;
+    --cor-borda: #dee2e6;
+    --vermelho-erro: #dc3545;
+}
+
+/* 
+  Sobrescreve as variáveis de CSS quando o atributo 'data-bs-theme="dark"' está presente no elemento <html>.
+  Isso ativa o tema escuro.
+*/
+[data-bs-theme="dark"] {
+    --azul-eletrico: #00A3FF;
+    --verde-neon: #7DFF22;
+    --azul-profundo: #005C94;
+    --fundo-body: #0A0E14;
+    --fundo-card: #1C252E;
+    --cor-texto: #F0F4F8;
+    --cor-texto-suave: #94A3B8;
+    --cor-borda: #495057;
+    --vermelho-erro: #dc3545;
+}
+
+/* === ESTILOS GLOBAIS E SOBRESCRITAS DO BOOTSTRAP === */
+
+/* Aplica as cores de fundo e texto globais usando as variáveis. */
+body {
+    color: var(--cor-texto);
+    background-color: var(--fundo-body);
+}
+
+/* Sobrescreve componentes do Bootstrap para que eles usem nossas variáveis de tema. */
+[data-bs-theme="dark"] .bg-dark {
+    background-color: var(--fundo-card) !important;
+}
+
+.card {
+    background-color: var(--fundo-card);
+    border: 1px solid var(--cor-borda);
+}
+
+.form-control, .form-select {
+    background-color: var(--fundo-body);
+    color: var(--cor-texto);
+    border-color: var(--cor-borda);
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: var(--fundo-body);
+    color: var(--cor-texto);
+    border-color: var(--azul-eletrico);
+    box-shadow: 0 0 0 0.25rem rgba(0, 163, 255, 0.25);
+}
+
+.form-label, label, .text-muted {
+    color: var(--cor-texto-suave) !important;
+}
+
+[data-bs-theme="dark"] .text-dark {
+    color: var(--cor-texto) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--cor-texto);
+}
+
+hr {
+    border-top-color: var(--cor-borda);
+    opacity: 0.25;
+}
+
+.btn-primary {
+    background-color: var(--azul-eletrico);
+    border-color: var(--azul-eletrico);
+    color: var(--fundo-card);
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: var(--azul-profundo);
+    border-color: var(--azul-profundo);
+    color: var(--cor-texto);
+}
+
+.btn-secondary {
+    background-color: var(--cinza-suave);
+    border-color: var(--cinza-suave);
+    color: var(--fundo-card);
+    font-weight: bold;
+}
+
+.p-5.mb-4.bg-white.rounded-3,
+.h-100.p-5.bg-white.border.rounded-3 {
+    background-color: var(--fundo-card) !important;
+    border: none !important;
+}
+
+.text-bg-dark {
+    background-color: var(--fundo-card) !important;
+    color: var(--cor-texto) !important;
+}
+
+/* === ESTILOS ESPECÍFICOS DA APLICAÇÃO === */
+
+/* Estilo para os cards que representam as CTOs na rede desbalanceada. */
+.cto-card {
+    background-color: var(--fundo-card);
+    border: 2px solid var(--cor-borda);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    width: 240px;
+    text-align: left;
+    display: inline-block;
+    vertical-align: top;
+    transition: border-color 0.3s, background-color 0.3s; /* Animação suave na mudança de cor. */
+}
+
+/* Estilos para indicar visualmente se o sinal em uma CTO está bom. */
+/* Há versões diferentes para o tema claro e escuro para garantir bom contraste. */
+[data-bs-theme="light"] .sinal-bom {
+    border-color: var(--verde-neon);
+    background-color: rgba(25, 135, 84, 0.1);
+}
+[data-bs-theme="dark"] .sinal-bom {
+    border-color: var(--verde-neon);
+    background-color: rgba(125, 255, 34, 0.1);
+}
+
+/* Estilo para indicar visualmente que o sinal está ruim (muito forte ou muito fraco). */
+.sinal-ruim {
+    border-color: var(--vermelho-erro);
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+/* Container que agrupa os cards da rede desbalanceada, permitindo scroll horizontal. */
+.rede-container {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    padding: 1rem;
+    min-height: 320px;
+}
+
+/* Estilo para a seta que conecta visualmente os cards das CTOs. */
+.seta {
+    font-size: 24px;
+    color: var(--cor-texto-suave);
+    display: inline-block;
+    margin: 0 1rem; /* Adiciona espaçamento horizontal */
+}
+
+/* Estilos para a página de identificação de cores de fibra. */
+.color-swatch {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+.table-cores td {
+    vertical-align: middle;
+}
+
+/* === MEDIA QUERIES PARA RESPONSIVIDADE E IMPRESSÃO === */
+
+/* 
+  Media Query para telas menores (ex: tablets e celulares).
+  Quando a largura da tela é menor que 992px, esses estilos são aplicados.
+*/
+@media (max-width: 991.98px) {
+    .rede-container {
+        flex-direction: column; /* Empilha os cards verticalmente */
+        overflow-x: hidden;
+    }
+
+    .seta {
+        transform: rotate(90deg); /* Gira a seta para apontar para baixo */
+        margin: 1.5rem 0; /* Ajusta a margem para o layout vertical */
+    }
+
+    .cto-card {
+        width: 90%; /* Ocupa mais espaço na tela */
+        max-width: 400px; /* Limita a largura máxima */
+    }
+}
+
+/* 
+  Estilos aplicados apenas ao tentar imprimir a página.
+  O objetivo é criar uma versão limpa e otimizada para papel.
+*/
+@media print {
+    /* Esconde elementos de navegação e botões que não fazem sentido na impressão. */
+    nav,
+    footer,
+    .no-print {
+        display: none !important;
+    }
+
+    /* Força o fundo branco e texto preto para economizar tinta e garantir legibilidade. */
+    body, .card, .cto-card {
+        background-color: #fff !important;
+        color: #000 !important;
+    }
+
+    h1, h2, h3, h4, h5, h6, span, p, strong, code, li, .display-4 {
+        color: #000 !important;
+    }
+
+    /* Ajustes de layout para a impressão. */
+    body {
+        font-size: 12pt;
+    }
+
+    .container {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .card, .cto-card {
+        border: 1px solid #ccc !important;
+        page-break-inside: avoid; /* Tenta não quebrar o card entre páginas */
+    }
+
+    /* Garante que a rede desbalanceada seja exibida em um layout de bloco (vertical). */
+    #rede_container {
+        display: block !important;
+    }
+}
